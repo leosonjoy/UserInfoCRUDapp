@@ -1,0 +1,21 @@
+.userContent {
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media screen and (max-width: 600px) {
+  .userContent {
+    grid-template-columns: auto;
+  }
+}
+
+.modalDelete {
+  margin: 1rem;
+  background: red;
+  color: aliceblue;
+  padding: 1rem;
+}

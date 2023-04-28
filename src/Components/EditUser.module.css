@@ -1,0 +1,12 @@
+.modalUpdate {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #015711;
+  color: aliceblue;
+}
+
+.modalEdit {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #e7f610;
+}
