@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import userContext from "./context";
 import { data } from "../data";
 import reducer from "../reducer/reducer";
@@ -6,18 +6,20 @@ import reducer from "../reducer/reducer";
 const initialState = {
   users: data,
   editedUser: [],
-  isModal: "",
-  modalText: "",
+  isToast: "",
+  toastText: "",
 };
 const UsersProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const [editIcon, setEditIcon] = useState(false);
   const value = {
     users: state.users,
-    isModal: state.isModal,
-    modalText: state.modalText,
+    isToast: state.isToast,
+    toastText: state.toastText,
     editUserIndex: state.editUserIndex,
     editedUser: state.editedUser,
+    editIcon: editIcon,
+    setEditIcon: setEditIcon,
     addUser: (newUser) => {
       dispatch({ type: "ADD_USER", payload: newUser });
     },

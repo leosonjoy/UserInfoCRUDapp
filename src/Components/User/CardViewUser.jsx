@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import useUserContext from "../Hooks/useUserContext";
+import useUserContext from "../../Hooks/useUserContext";
 
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import EditUser from "../EditUser";
 
-const User = (props) => {
+const CardViewUser = (props) => {
   const { id, name, email } = props.user;
   const { editUser, deleteUser } = useUserContext();
 
@@ -20,21 +20,17 @@ const User = (props) => {
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text className="mb-5">{email}</Card.Text>
-        <Link to="/updateUser">
-          <Button
-            variant="warning"
-            className="mx-2"
-            onClick={() => handleEdit(id)}
-          >
-            Edit User
+        <div className="d-flex flex-row justify-content-between p-0">
+          <div className="p-0" onClick={() => handleEdit(id)}>
+            <EditUser />
+          </div>
+          <Button variant="danger" onClick={() => handleDelete(id)}>
+            Delete User
           </Button>
-        </Link>
-        <Button variant="danger" onClick={() => handleDelete(id)}>
-          Delete User
-        </Button>
+        </div>
       </Card.Body>
     </Card>
   );
 };
 
-export default User;
+export default CardViewUser;

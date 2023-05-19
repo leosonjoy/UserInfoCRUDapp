@@ -8,10 +8,6 @@ const Home = () => {
   return (
     <div>
       <UserCount />
-      <Link to="/addUser">
-        <Button variant="primary">Create New User</Button>
-      </Link>
-
       <Users />
     </div>
   );

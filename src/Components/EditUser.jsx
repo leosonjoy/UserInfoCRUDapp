@@ -1,76 +1,86 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useUserContext from "../Hooks/useUserContext";
 
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import style from "./EditUser.module.css";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
+import { BiEdit } from "react-icons/bi";
 
-const EditUser = () => {
-  const { editedUser, update, isModal, modalText } = useUserContext();
-
-  const [inputUser, setInputUser] = useState(editedUser);
-  const [updateUser, setUpdateUser] = useState({ name: "", email: "", id: "" });
+function EditUser() {
+  const { editIcon, editedUser, update } = useUserContext();
+  const [show, setShow] = useState(false);
+  const [updateUser, setUpdateUser] = useState({
+    name: "",
+    email: "",
+    id: "",
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     update(updateUser);
-    setInputUser({ id: "", name: "", email: "" });
+    setShow(false);
+    setUpdateUser({ id: "", name: "", email: "" });
   };
 
   const handleInput = (e) => {
-    setInputUser({
-      ...inputUser,
-      [e.target.name]: e.target.value,
-      id: inputUser.id,
-    });
-
     setUpdateUser({
       ...updateUser,
       [e.target.name]: e.target.value,
-      id: inputUser.id,
+      id: editedUser.id,
     });
   };
 
-  const message =
-    isModal === "edit" ? (
-      <p className={style.modalEdit}>{modalText}</p>
-    ) : (
-      <p className={style.modalUpdate}>{modalText}</p>
-    );
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
-    <div className={style.formContent}>
-      <h1>Update User</h1>
-      <Form className="mt-3 m-auto bg-light p-3" onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="name"
-            placeholder="name"
-            id="name"
-            name="name"
-            value={inputUser.name}
-            onChange={handleInput}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            id="email"
-            name="email"
-            value={inputUser.email}
-            onChange={handleInput}
-          />
-        </Form.Group>
-        <Button variant="success" type="submit">
-          Update
-        </Button>
-        {message}
-      </Form>
-    </div>
+    <>
+      <Button variant="warning" onClick={handleShow}>
+        {editIcon ? <BiEdit /> : "Edit User"}
+      </Button>
+      {/* {editIcon ? <Button:<Button variant="warning" onClick={handleShow}>Edit User</Button>} */}
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Update User</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form className="mt-3 m-auto bg-light p-3" onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="name"
+                placeholder="name"
+                id="name"
+                name="name"
+                value={updateUser.name}
+                onChange={handleInput}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                id="email"
+                name="email"
+                value={updateUser.email}
+                onChange={handleInput}
+              />
+            </Form.Group>
+            <div className="d-flex justify-content-between">
+              <Button variant="success" type="submit">
+                Update
+              </Button>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+            </div>
+          </Form>
+        </Modal.Body>
+      </Modal>
+    </>
   );
-};
+}
 
 export default EditUser;

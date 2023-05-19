@@ -4,8 +4,8 @@ const reducer = (state, action) => {
       return {
         ...state,
         users: [...state.users, action.payload],
-        isModal: "add",
-        modalText: "New user is Added  successfully",
+        isToast: "add",
+        toastText: "New user is Added  successfully",
       };
 
     case "UPDATE_USER":
@@ -16,8 +16,8 @@ const reducer = (state, action) => {
       return {
         ...state,
         users: state.users,
-        isModal: "update",
-        modalText: "User Updated  successfully",
+        isToast: "update",
+        toastText: "User Updated  successfully",
       };
 
     case "EDIT_USER":
@@ -27,8 +27,6 @@ const reducer = (state, action) => {
         ...state,
         users: state.users,
         editedUser: editUser[0],
-        isModal: "edit",
-        modalText: `User info is need to update `,
       };
 
     case "DELETE_USER":
@@ -41,9 +39,10 @@ const reducer = (state, action) => {
       return {
         ...state,
         users: filteredUser,
-        isModal: "delete",
-        modalText: `${deletedUser[0].name} is deleted successfully from your User list `,
+        isToast: "delete",
+        toastText: `${deletedUser[0].name} is deleted successfully from your User list `,
       };
+
     default:
       return state;
   }

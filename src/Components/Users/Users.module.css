@@ -1,5 +1,5 @@
 .userContent {
-  margin: 2rem;
+  /* margin: 2rem; */
   display: grid;
   grid-template-columns: auto auto auto auto;
   justify-content: center;
@@ -18,4 +18,23 @@
   background: red;
   color: aliceblue;
   padding: 1rem;
+}
+
+.container {
+  width: 70vw;
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin: 0.2rem;
+}
+.btnGroup {
+  display: flex;
+  padding: 1rem;
+
+  /* flex-direction: row; */
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
 }

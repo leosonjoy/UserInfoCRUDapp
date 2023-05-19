@@ -1,0 +1,26 @@
+.userUpdate {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: #015711;
+  color: aliceblue;
+}
+
+.userEdit {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: #e7f610;
+}
+
+.userDelete {
+  margin: 1rem;
+  background: red;
+  color: aliceblue;
+  padding: 0.5rem;
+}
+
+.userAdd {
+  margin: 1rem;
+  background: rgb(1, 80, 1);
+  color: antiquewhite;
+  padding: 0.5rem;
+}
